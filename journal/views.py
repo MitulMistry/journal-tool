@@ -1,29 +1,54 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 
 
 def index(request):
-    return HttpResponse("Journal Tool index page.")
+    return render(request, "journal/index.html")
 
 
 def login(request):
-    pass
+    if request.method == "POST":
+        pass
+
+    else:
+        return render(request, "journal/login.html")
 
 
-def logout(request):
-    pass
+def logout(request):    
+    return HttpResponseRedirect(reverse("index"))
 
 
 def register(request):
-    pass
+    if request.method == "POST":
+        pass
+
+    else:
+        return render(request, "journal/register.html")
+
+
+def edit(request):
+    if request.method == "PUT":
+        pass
+
+    else:
+        return render(request, "journal/register.html")
 
 
 def delete(request):
-    pass
+    if request.method == "DELETE":
+        pass
+    
+    else:
+        return HttpResponseRedirect(reverse("index"))
 
 
 def new_entry(request):
-    pass
+    if request.method == "POST":
+        pass
+
+    else:
+        return render(request, "journal/new_entry.html")
 
 
 def entry(request, id):
@@ -31,28 +56,48 @@ def entry(request, id):
 
 
 def edit_entry(request, id):
-    pass
+    if request.method == "PUT":
+        pass
+
+    else:
+        pass
 
 
 def delete_entry(request, id):
-    pass
+    if request.method == "DELETE":
+        pass
+
+    else:
+        pass
 
 
 def distortions(request):
-    pass
+    return render(request, "journal/distortions.html")
 
 
 def new_activity(request):
-    pass
+    if request.method == "POST":
+        pass
+
+    else:
+        pass
 
 
 def edit_activity(request, id):
-    pass
+    if request.method == "PUT":
+        pass
+    
+    else:
+        pass
 
 
 def delete_activity(request, id):
-    pass
+    if request.method == "DELETE":
+        pass
+
+    else:
+        pass
 
 
 def user_profile(request, id):
-    pass
+    return render(request, "journal/user_profile.html")
