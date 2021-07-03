@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -62,6 +63,7 @@ def register(request):
         return render(request, "journal/register.html")
 
 
+@login_required
 def edit(request, id):
     if request.method == "PUT":
         username = request.POST["username"]
@@ -95,6 +97,7 @@ def edit(request, id):
         })
 
 
+@login_required
 def delete(request, id):
     if request.method == "DELETE":
         request.user.delete()
@@ -103,6 +106,7 @@ def delete(request, id):
         return HttpResponseRedirect(reverse("index"))
 
 
+@login_required
 def new_entry(request):
     if request.method == "POST":
         pass
@@ -111,10 +115,12 @@ def new_entry(request):
         return render(request, "journal/new_entry.html")
 
 
+@login_required
 def entry(request, id):
     pass
 
 
+@login_required
 def edit_entry(request, id):
     if request.method == "PUT":
         pass
@@ -123,6 +129,7 @@ def edit_entry(request, id):
         pass
 
 
+@login_required
 def delete_entry(request, id):
     if request.method == "DELETE":
         pass
@@ -135,6 +142,7 @@ def distortions(request):
     return render(request, "journal/distortions.html")
 
 
+@login_required
 def new_activity(request):
     if request.method == "POST":
         pass
@@ -143,6 +151,7 @@ def new_activity(request):
         pass
 
 
+@login_required
 def edit_activity(request, id):
     if request.method == "PUT":
         pass
@@ -151,6 +160,7 @@ def edit_activity(request, id):
         pass
 
 
+@login_required
 def delete_activity(request, id):
     if request.method == "DELETE":
         pass
@@ -159,5 +169,6 @@ def delete_activity(request, id):
         pass
 
 
+@login_required
 def user_profile(request, id):
     return render(request, "journal/user_profile.html")
