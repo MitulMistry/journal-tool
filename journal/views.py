@@ -62,18 +62,43 @@ def register(request):
         return render(request, "journal/register.html")
 
 
-def edit(request):
+def edit(request, id):
     if request.method == "PUT":
-        pass
+        username = request.POST["username"]
+        email = request.POST["email"]
 
+        # Ensure password matches confirmation
+        password = request.POST["password"]
+        confirmation = request.POST["confirmation"]
+        if password != confirmation:
+            return render(request, "journal/edit.html", {
+                "user": request.user,
+                "message": "Passwords must match."
+            })
+        
+        # Attempt to edit user
+        try:
+            user = request.user
+            user.username = username
+            user.email = email
+            user.password = password
+            user.save()
+        except IntegrityError:
+            return render(request, "journal/register.html", {
+                "message": "Username already taken."
+            })            
+        login(request, user)
+        return HttpResponseRedirect(reverse("index"))
     else:
-        return render(request, "journal/register.html")
+        return render(request, "journal/edit.html", {
+            "user": request.user
+        })
 
 
-def delete(request):
+def delete(request, id):
     if request.method == "DELETE":
-        pass
-    
+        request.user.delete()
+        HttpResponseRedirect(reverse("index"))
     else:
         return HttpResponseRedirect(reverse("index"))
 
