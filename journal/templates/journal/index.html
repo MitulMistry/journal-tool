@@ -2,5 +2,11 @@
 {% load static %}
 
 {% block body %}
-    <h3>Index</h3>
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Journal Tool</h1>
+            <p class="col-md-8 fs-4">Journal events in your life and track your mood.</p>
+            <a href="{% url 'register' %}" class="btn btn-primary btn-lg" role="button">Register</a>
+        </div>
+    </div>
 {% endblock %}
