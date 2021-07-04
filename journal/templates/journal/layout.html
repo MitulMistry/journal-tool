@@ -46,6 +46,12 @@
             </div>
         </nav>
 
+        {% if message %}
+            <div class="alert alert-primary text-center" role="alert">
+                {{ message }}
+            </div>
+        {% endif %}
+
         <div class="body container-fluid">
             {% block body %}
             {% endblock %}

@@ -3,4 +3,21 @@
 
 {% block body %}
     <h3>Login</h3>
+
+    <div class="p-5 mb-4 bg-light2 rounded-3">
+        <div class="col-md-6">
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input class="form-control" autofocus type="text" name="username">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input class="form-control" type="password" name="password">
+                </div>
+                <input class="btn btn-primary" type="submit" value="Login">
+            </form>
+        </div>
+    </div>
 {% endblock %}
