@@ -56,12 +56,28 @@ body {
     font-weight: 500;
 }
 
+.form-label2 {
+    font-weight: 500;
+	margin-bottom: 0;
+}
+
+.form-text2 {
+	/* margin-top: .25rem; */
+    margin-bottom: .5rem;
+	font-size: .875em;
+	color: #6c757d;
+}
+
 .btn-primary {
     border-radius: 50rem;
     padding: .5rem 2rem;
     background-color: #52cac9;
     border-color: #52cac9;
     font-weight: 700;
+}
+
+.btn-sm {
+    padding: .3rem 1rem;
 }
 
 .btn-primary:hover {    
@@ -78,5 +94,63 @@ body {
 	color: #fff;
 	background-color: #42b4b4;
 	border-color: #42b4b4;
-	box-shadow: 0 0 0 .25rem rgba(49, 222, 253, 0.5);
+	box-shadow: 0 0 0 .25rem rgba(138, 233, 250, 0.5);
+}
+
+.btn-distortion {
+    color: #fff;
+    font-size: .85rem;
+    border-radius: 50rem;
+    padding: .2rem .8rem;
+    background-color: #fbbbbb;
+    border-color: #fbbbbb;
+    font-weight: 700;
+}
+
+.btn-distortion:hover {
+    color: #fff;
+	background-color: #f87979;
+	border-color: #f87979;
+}
+
+.btn-check:active + .btn-distortion, .btn-check:checked + .btn-distortion, .btn-distortion.active, .btn-distortion:active, .show > .btn-distortion.dropdown-toggle {
+	color: #fff;
+    background-color: #f65e5e;
+	border-color: #f65e5e;
+}
+
+.btn-check:focus + .btn-distortion, .btn-distortion:focus {
+	color: #fff;
+	/* background-color: #f65e5e;
+	border-color: #f65e5e; */
+	box-shadow: 0 0 0 .25rem rgba(253, 158, 163, 0.5);
+}
+
+.btn-activity {
+    color: #fff;
+    font-size: .85rem;
+    border-radius: 50rem;
+    padding: .2rem .8rem;
+    background-color: #abc7f5;
+    border-color: #abc7f5;
+    font-weight: 700;
+}
+
+.btn-activity:hover {    
+    color: #fff;
+	background-color: #90b5ec;
+	border-color: #90b5ec;
+}
+
+.btn-check:active + .btn-activity, .btn-check:checked + .btn-activity, .btn-activity.active, .btn-activity:active, .show > .btn-activity.dropdown-toggle {
+	color: #fff;
+    background-color: #699eeb;
+	border-color: #699eeb;
+}
+
+.btn-check:focus + .btn-activity, .btn-activity:focus {
+	color: #fff;
+	/* background-color: #699eeb;
+	border-color: #699eeb; */
+	box-shadow: 0 0 0 .25rem rgba(156, 194, 255, 0.5);
 }
