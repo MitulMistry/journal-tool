@@ -6,7 +6,7 @@
 
     <div class="p-5 mb-4 bg-light2 rounded-3">
         <div class="col-md-6">
-            <form action="{% url 'login' %}" method="post">
+            <form action="{% url 'login_user' %}" method="post">
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>

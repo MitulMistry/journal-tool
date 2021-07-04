@@ -14,7 +14,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Journal Tool</a>
+                <a class="navbar-brand" href="{% url 'index' %}">Journal Tool</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -24,21 +24,24 @@
                         <a class="nav-link" href="{% url 'index' %}">How it works</a>
                     </li>
                     {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'create_entry' %}">Create Entry</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'entries' %}">View Entries</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'user_profile' %}">Profile</a>
-                    </li>
-                    {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            <a class="nav-link" href="{% url 'new_entry' %}">Create Entry</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'register' %}">Register</a>
+                            <a class="nav-link" href="{% url 'entries' %}">View Entries</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'user_profile' %}">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link" href="{% url 'logout_user' %}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login_user' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register_user' %}">Register</a>
                         </li>
                     {% endif %}
                     </ul>

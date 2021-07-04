@@ -11,7 +11,7 @@ def index(request):
     return render(request, "journal/index.html")
 
 
-def login(request):
+def login_user(request):
     if request.method == "POST":
         
         # Attempt to sign user in
@@ -31,12 +31,12 @@ def login(request):
         return render(request, "journal/login.html")
 
 
-def logout(request):
+def logout_user(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
 
 
-def register(request):
+def register_user(request):
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
@@ -64,7 +64,7 @@ def register(request):
 
 
 @login_required
-def edit(request, id):
+def edit_user(request, id):
     if request.method == "PUT":
         username = request.POST["username"]
         email = request.POST["email"]
@@ -98,7 +98,7 @@ def edit(request, id):
 
 
 @login_required
-def delete(request, id):
+def delete_user(request, id):
     if request.method == "DELETE":
         request.user.delete()
         HttpResponseRedirect(reverse("index"))

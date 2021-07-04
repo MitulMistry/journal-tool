@@ -4,11 +4,11 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('login', views.login, name='login'),
-    path('logout', views.logout, name='logout'),
-    path('register', views.register, name='register'),
-    path('edit', views.edit, name='edit'),
-    path('delete', views.delete, name='delete'),
+    path('login', views.login_user, name='login_user'),
+    path('logout', views.logout_user, name='logout_user'),
+    path('register', views.register_user, name='register_user'),
+    path('edit', views.edit_user, name='edit_user'),
+    path('delete', views.delete_user, name='delete_user'),
     path('entries', views.entries, name='entries'),
     path('entries/new', views.new_entry, name='new_entry'),
     path('entries/<int:id>', views.entry, name='entry'),
@@ -18,5 +18,5 @@ urlpatterns = [
     path('activities/new', views.new_activity, name='new_activity'),
     path('activities/<int:id>/edit', views.edit_activity, name='edit_activity'),
     path('activities/<int:id>/delete', views.delete_activity, name='delete_activity'),
-    path('users/<int:id>', views.user_profile, name='user_profile')
+    path('profile', views.user_profile, name='user_profile')
 ]
