@@ -107,6 +107,11 @@ def delete(request, id):
 
 
 @login_required
+def entries(request):
+    return render(request, "journal/entries.html")
+
+
+@login_required
 def new_entry(request):
     if request.method == "POST":
         pass
