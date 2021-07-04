@@ -1,5 +1,82 @@
 /* Custom application styles */
 
-.body {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+body {
+    background-color: #dde8f9;
+    font-family: 'Roboto', sans-serif;
+}
+
+.body {    
     padding-top: 1rem;
+}
+
+.bg-light2 {
+    background-color: white;
+}
+
+.rounded-3 {
+	border-radius: 2rem !important;
+}
+
+.navbar {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.navbar-brand {
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    font-size: 1.3rem;    
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+	color: rgba(0,0,0,.7);
+    background-color: #ededf2;
+}
+
+.form-control {	
+	/* border: 2px solid #ced4da; */
+    border: 2px solid #d2dae7;
+	border-radius: .75rem;
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+.btn-primary {
+    border-radius: 50rem;
+    padding: .5rem 2rem;
+    background-color: #52cac9;
+    border-color: #52cac9;
+    font-weight: 700;
+}
+
+.btn-primary:hover {    
+	background-color: #42b4b4;
+	border-color: #42b4b4;
+}
+
+.btn-check:active + .btn-primary, .btn-check:checked + .btn-primary, .btn-primary.active, .btn-primary:active, .show > .btn-primary.dropdown-toggle {
+	background-color: #3aa5a5;
+	border-color: #3aa5a5;
+}
+
+.btn-check:focus + .btn-primary, .btn-primary:focus {
+	color: #fff;
+	background-color: #42b4b4;
+	border-color: #42b4b4;
+	box-shadow: 0 0 0 .25rem rgba(49, 222, 253, 0.5);
 }
