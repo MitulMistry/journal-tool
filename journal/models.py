@@ -38,7 +38,8 @@ class Distortion(models.Model):
     entries = models.ManyToManyField(Entry)
     name = models.CharField(max_length=50)
     icon = models.CharField(max_length=50)
-    description = models.CharField(max_length=500)
+    blurb = models.CharField(max_length=500)
+    description = models.CharField(max_length=2000)
 
     def __str__(self):
         return f"Distortion: {self.name}"

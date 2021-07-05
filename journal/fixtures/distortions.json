@@ -1,0 +1,152 @@
+[
+    {
+      "model": "journal.distortion",
+      "pk": 1,
+      "fields": {
+        "name": "Polarized thinking",
+        "icon": "fas fa-adjust",
+        "blurb": "You look at things in absolute, black-and-white categories.",
+        "description": ""
+      }
+    },
+    {
+      "model": "journal.distortion",
+      "pk": 2,
+      "fields": {
+        "name": "Overgeneralization",
+        "icon": "fas fa-redo-alt",
+        "blurb": "You view a negative event as a never-ending pattern of defeat.",
+        "description": ""
+      }
+    },
+    {
+      "model": "journal.distortion",
+      "pk": 3,
+      "fields": {
+        "name": "Mental filtering",
+        "icon": "fas fa-filter",
+        "blurb": "You dwell on the negatives and ignore the positives.",
+        "description": ""
+      }
+    },
+    {
+      "model": "journal.distortion",
+      "pk": 4,
+      "fields": {
+        "name": "Discounting the positives",
+        "icon": "fas fa-minus-circle",
+        "blurb": "You insist that your accomplishments or positive qualities don’t count.",
+        "description": ""
+      }
+    },
+    {
+      "model": "journal.distortion",
+      "pk": 5,
+      "fields": {
+        "name": "Mind reading",
+        "icon": "fas fa-brain",
+        "blurb": "You assume that people are reacting negatively to you (jumping to conclusions).",
+        "description": ""
+      }
+    },
+    {
+      "model": "journal.distortion",
+      "pk": 6,
+      "fields": {
+        "name": "Fortune-telling",
+        "icon": "fas fa-hat-wizard",
+        "blurb": "You predict that things will turn out badly (jumping to conclusions).",
+        "description": ""
+      }
+    },
+    {
+      "model": "journal.distortion",
+      "pk": 7,
+      "fields": {
+        "name": "Magnification/Minimization",
+        "icon": "fas fa-search",
+        "blurb": "You blow things way out of proportion (catastrophizing) or you shrink their importance.",
+        "description": ""
+      }
+    },
+    {
+      "model": "journal.distortion",
+      "pk": 8,
+      "fields": {
+        "name": "Emotional reasoning",
+        "icon": "fas fa-sad-tear",
+        "blurb": "You reason from how you feel: \"I feel like an idiot, so I must be one.\"",
+        "description": ""
+      }
+    },
+    {
+      "model": "journal.distortion",
+      "pk": 9,
+      "fields": {
+        "name": "\"Should\" statements",
+        "icon": "fas fa-grimace",
+        "blurb": "You criticize yourself or other people with \"shoulds,\" \"shouldn’ts,\" \"musts,\" \"oughts,\" and \"have-tos.\"",
+        "description": ""
+      }
+    },
+    {
+      "model": "journal.distortion",
+      "pk": 10,
+      "fields": {
+        "name": "Labeling",
+        "icon": "fas fa-tags",
+        "blurb": "Instead of saying, \"I made a mistake,\" you tell yourself, \"I’m a jerk\" or \"a loser.\"",
+        "description": ""
+      }
+    },
+    {
+      "model": "journal.distortion",
+      "pk": 11,
+      "fields": {
+        "name": "Blame/Personalization",
+        "icon": "fas fa-fire-alt",
+        "blurb": "You blame yourself for something you weren’t entirely responsible for (personalization), or you blame other people and overlook ways that you contributed to a problem.",
+        "description": ""
+      }
+    },
+    {
+      "model": "journal.distortion",
+      "pk": 12,
+      "fields": {
+        "name": "Control fallacies",
+        "icon": "fas fa-gamepad",
+        "blurb": "You feel in control of (or responsible for) everything in your life (or the lives of others), or you feel you have no control at all.",
+        "description": ""
+      }
+    },
+    {
+      "model": "journal.distortion",
+      "pk": 13,
+      "fields": {
+        "name": "Fallacy of fairness",
+        "icon": "fas fa-balance-scale",
+        "blurb": "You believe you know what’s fair and what isn’t, and it upsets you when others disagree with you.",
+        "description": ""
+      }
+    },
+    {
+      "model": "journal.distortion",
+      "pk": 14,
+      "fields": {
+        "name": "Fallacy of change",
+        "icon": "fas fa-bolt",
+        "blurb": "You expect others to change their ways to suit your expectations or needs, particularly when you pressure them enough.",
+        "description": ""
+      }
+    },
+    {
+      "model": "journal.distortion",
+      "pk": 15,
+      "fields": {
+        "name": "Always being right",
+        "icon": "fas fa-crown",
+        "blurb": "You see your own opinions as facts of life, trumping everything else, including evidence and the feelings of others.",
+        "description": ""
+      }
+    }
+  ]
