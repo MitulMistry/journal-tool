@@ -11,11 +11,11 @@
                 <div class="col">
                     <div class="mb-3">
                         <label for="date" class="form-label">Date</label>
-                        <input class="form-control" autofocus type="date" name="date" value="2021-01-01" min="2020-01-01" max="{{ date }}">
+                        <input class="form-control" autofocus type="date" name="date" id="input-date" value="2021-01-01" min="2020-01-01">
                     </div>
                     <div class="mb-3">
                         <label for="time" class="form-label">Time</label>
-                        <input class="form-control" type="time" name="time" value="13:00">
+                        <input class="form-control" type="time" name="time" id="input-time" value="13:00">
                     </div>
                     <div class="mb-3">
                         <label for="mood" class="form-label2">Mood</label>
@@ -79,4 +79,8 @@
             </div>
         </form>
     </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'journal/new_entry.js' %}"></script>
 {% endblock %}
