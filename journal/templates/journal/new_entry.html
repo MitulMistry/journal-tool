@@ -68,7 +68,7 @@
                         
                         {% for distortion in distortions %}
                             <input type="checkbox" class="btn-check" id="btn-distortion-{{ distortion.id }}" autocomplete="off">
-                            <label class="btn btn-distortion btn-sm" for="btn-distortion-{{ distortion.id }}">{{ distortion.name }}</label>
+                            <label class="btn btn-distortion btn-sm" for="btn-distortion-{{ distortion.id }}"><i class="{{ distortion.icon }}"></i> {{ distortion.name }}</label>
                         {% endfor %}
                     </div>
                     <div class="mb-3">
