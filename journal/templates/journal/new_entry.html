@@ -66,8 +66,10 @@
                         <label for="distortions" class="form-label2">Cognitive Distortions</label>
                         <div id="distortionsHelp" class="form-text2">Identify from list</div>
                         
-                        <input type="checkbox" class="btn-check" id="btn-distortion-1" autocomplete="off">
-                        <label class="btn btn-distortion btn-sm" for="btn-distortion-1">Distortion 1</label>
+                        {% for distortion in distortions %}
+                            <input type="checkbox" class="btn-check" id="btn-distortion-{{ distortion.id }}" autocomplete="off">
+                            <label class="btn btn-distortion btn-sm" for="btn-distortion-{{ distortion.id }}">{{ distortion.name }}</label>
+                        {% endfor %}
                     </div>
                     <div class="mb-3">
                         <label for="positive_thoughts" class="form-label2">Positive Thoughts</label>

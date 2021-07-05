@@ -117,7 +117,9 @@ def new_entry(request):
         pass
 
     else:
-        return render(request, "journal/new_entry.html")
+        return render(request, "journal/new_entry.html", {
+            "distortions": Distortion.objects.all()
+        })
 
 
 @login_required

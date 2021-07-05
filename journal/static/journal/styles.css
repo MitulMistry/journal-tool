@@ -101,10 +101,12 @@ body {
     color: #fff;
     font-size: .85rem;
     border-radius: 50rem;
-    padding: .2rem .8rem;
+    padding: .15rem .8rem;
     background-color: #fbbbbb;
     border-color: #fbbbbb;
     font-weight: 700;
+    margin-bottom: .5rem;
+    margin-right: .25rem;
 }
 
 .btn-distortion:hover {
