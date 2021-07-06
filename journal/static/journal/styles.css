@@ -11,6 +11,10 @@ body {
     padding-top: 1rem;
 }
 
+footer.text-center {
+    padding-bottom: 1rem;
+}
+
 .bg-light2 {
     background-color: white;
 }
