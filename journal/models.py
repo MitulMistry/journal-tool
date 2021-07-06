@@ -16,17 +16,19 @@ class Entry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="entries")
     timestamp = models.DateTimeField(auto_now_add=True)
     mood = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
-    events = models.CharField(max_length=1500)
-    negative_thoughts = models.CharField(max_length=1500)
-    positive_thoughts = models.CharField(max_length=1500)
+    events = models.CharField(max_length=1500, blank=True, default="")
+    negative_thoughts = models.CharField(max_length=1500, blank=True, default="")
+    positive_thoughts = models.CharField(max_length=1500, blank=True, default="")
 
     def __str__(self):
         return f"{self.user.username}'s entry on {self.timestamp}"
 
 
+# User has many Activities
 # Entries have many Activities, Activities have many Entries
 class Activity(models.Model):
-    entries = models.ManyToManyField(Entry)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="activities")
+    entries = models.ManyToManyField(Entry, blank=True)
     name = models.CharField(max_length=50)
 
     def __str__(self):
@@ -35,11 +37,11 @@ class Activity(models.Model):
 
 # Entries have many Distortions, Distortions have many Entries
 class Distortion(models.Model):
-    entries = models.ManyToManyField(Entry)
+    entries = models.ManyToManyField(Entry, blank=True)
     name = models.CharField(max_length=50)
     icon = models.CharField(max_length=50)
     blurb = models.CharField(max_length=500)
-    description = models.CharField(max_length=2000)
+    description = models.CharField(max_length=2000, blank=True, default="")
 
     def __str__(self):
         return f"Distortion: {self.name}"

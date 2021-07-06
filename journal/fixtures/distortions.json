@@ -14,7 +14,7 @@
       "pk": 2,
       "fields": {
         "name": "Overgeneralization",
-        "icon": "fas fa-redo-alt",
+        "icon": "fas fa-redo",
         "blurb": "You view a negative event as a never-ending pattern of defeat.",
         "description": ""
       }
@@ -74,7 +74,7 @@
       "pk": 8,
       "fields": {
         "name": "Emotional reasoning",
-        "icon": "fas fa-sad-tear",
+        "icon": "fas fa-heart-broken",
         "blurb": "You reason from how you feel: \"I feel like an idiot, so I must be one.\"",
         "description": ""
       }
@@ -84,7 +84,7 @@
       "pk": 9,
       "fields": {
         "name": "\"Should\" statements",
-        "icon": "fas fa-grimace",
+        "icon": "fas fa-directions",
         "blurb": "You criticize yourself or other people with \"shoulds,\" \"shouldn’ts,\" \"musts,\" \"oughts,\" and \"have-tos.\"",
         "description": ""
       }
@@ -104,7 +104,7 @@
       "pk": 11,
       "fields": {
         "name": "Blame/Personalization",
-        "icon": "fas fa-fire-alt",
+        "icon": "fas fa-crosshairs",
         "blurb": "You blame yourself for something you weren’t entirely responsible for (personalization), or you blame other people and overlook ways that you contributed to a problem.",
         "description": ""
       }
