@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     enable_tooltips();
     set_current_datetime();
+    initialize_add_activity();
 })
 
 function enable_tooltips() {
@@ -25,4 +26,46 @@ function set_current_datetime() {
 // Format number to ensure leading zero (1 becomes 01)
 function format_zero(val) {
     return `${val < 10 ? 0: ''}${val}`;
+}
+
+function initialize_add_activity() {
+    document.querySelector('#add-activity-btn').onclick = function() {
+
+        const name = document.querySelector('#add-activity-form').value;
+
+        fetch('/activities/new', {
+            method: 'POST',
+            body: JSON.stringify({
+                name: name
+            })
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+
+            // Check if id and name of newly created activity are returned in response
+            if ('id' in result && 'name' in result) {            
+                const element_id = `btn-activity-${result['id']}`;
+
+                const checkbox = document.createElement('input');
+                checkbox.setAttribute('type', 'checkbox');
+                checkbox.className = 'btn-check';
+                checkbox.id = element_id;
+                checkbox.setAttribute('autocomplete', 'off');
+
+                const label = document.createElement('label');
+                label.className = 'btn btn-activity btn-sm';
+                label.setAttribute('for', element_id);
+                label.innerHTML = capitalize(result['name']);
+                
+                const div = document.querySelector('#activities-div');
+                div.append(checkbox);
+                div.append(label);
+            }
+        });
+    };
+}
+
+function capitalize(str) {
+    return str[0].toUpperCase() + str.substring(1);
 }

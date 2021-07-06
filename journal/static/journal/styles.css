@@ -49,7 +49,7 @@ body {
 .form-control {	
 	/* border: 2px solid #ced4da; */
     border: 2px solid #d2dae7;
-	border-radius: .75rem;
+	border-radius: .5rem;
 }
 
 .form-label {
@@ -132,10 +132,12 @@ body {
     color: #fff;
     font-size: .85rem;
     border-radius: 50rem;
-    padding: .2rem .8rem;
+    padding: .15rem .8rem;
     background-color: #abc7f5;
     border-color: #abc7f5;
     font-weight: 700;
+    margin-bottom: .5rem;
+    margin-right: .25rem;
 }
 
 .btn-activity:hover {    
@@ -155,6 +157,10 @@ body {
 	/* background-color: #699eeb;
 	border-color: #699eeb; */
 	box-shadow: 0 0 0 .25rem rgba(156, 194, 255, 0.5);
+}
+
+.activities-div {
+    margin-top: .75rem;
 }
 
 /* Tooltip */

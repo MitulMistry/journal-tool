@@ -1,9 +1,12 @@
+import json
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
+from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import User, Entry, Activity, Distortion
 
@@ -118,6 +121,7 @@ def new_entry(request):
 
     else:
         return render(request, "journal/new_entry.html", {
+            "activities": request.user.activities.all(),
             "distortions": Distortion.objects.all()
         })
 
@@ -149,13 +153,35 @@ def distortions(request):
     return render(request, "journal/distortions.html")
 
 
+@csrf_exempt
 @login_required
 def new_activity(request):
     if request.method == "POST":
-        pass
+        
+        # Load data from request
+        data = json.loads(request.body)
+        if data.get("name") is not None:
+            name = data["name"]
+        
+        # Check if activity name already exists
+        activity = request.user.activities.all().filter(name=name.lower())
+        if activity.exists():
+            return JsonResponse({
+                "error": "Activity already exists."
+            }, status=400)
+        
+        activity = Activity(user=request.user,name=name.lower())
+        activity.save()
+
+        return JsonResponse({
+            "id": activity.id,
+            "name": activity.name
+        })
 
     else:
-        pass
+        return JsonResponse({
+            "error": "POST request required."
+        }, status=400)
 
 
 @login_required

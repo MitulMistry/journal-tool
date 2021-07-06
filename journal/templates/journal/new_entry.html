@@ -4,7 +4,7 @@
 {% block body %}
     <h3>New Entry</h3>
 
-    <div class="p-5 mb-4 bg-light2 rounded-3">        
+    <div class="p-5 mb-4 bg-light2 rounded-3">
         <form action="{% url 'register_user' %}" method="post">
             {% csrf_token %}
             <div class="row">
@@ -46,15 +46,22 @@
                         <div id="eventsHelp" class="form-text2">What happened today?</div>
                         <textarea class="form-control" name="events" rows="6"></textarea>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3" id="activities-div">
                         <label for="activities" class="form-label2">Activities</label>
                         <div id="activitiesHelp" class="form-text2">What did you do today?</div>
-                        <input class="form-control" autofocus type="text" name="activities">
-                        <button type="button" class="btn btn-primary btn-sm" id="add-activity-btn">Add New</button>
-                        
-                        <input type="checkbox" class="btn-check" id="btn-activity-1" autocomplete="off">
-                        <label class="btn btn-activity btn-sm" for="btn-activity-1">Activity 1</label>
-                    </div>                    
+
+                        <div class="input-group">
+                            <input class="form-control" type="text" id="add-activity-form" name="activities">
+                            <button type="button" class="btn btn-primary btn-sm" id="add-activity-btn">Add New</button>
+                        </div>
+
+                        <div class="activities-div">
+                            {% for activity in activities %}
+                                <input type="checkbox" class="btn-check" id="btn-activity-{{ activity.id }}" autocomplete="off">
+                                <label class="btn btn-activity btn-sm" for="btn-activity-{{ activity.id }}">{{ activity.name.capitalize }}</label>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
                 <div class="col">
                     <div class="mb-3">
@@ -65,7 +72,7 @@
                     <div class="mb-3">
                         <label for="distortions" class="form-label2">Cognitive Distortions</label>
                         <div id="distortionsHelp" class="form-text2">Identify from list</div>
-                        
+
                         {% for distortion in distortions %}
                             <input type="checkbox" class="btn-check" id="btn-distortion-{{ distortion.id }}" autocomplete="off">
                             <label class="btn btn-distortion btn-sm" for="btn-distortion-{{ distortion.id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ distortion.blurb }}"><i class="{{ distortion.icon }}"></i> {{ distortion.name }}</label>
@@ -76,7 +83,9 @@
                         <div id="positiveHelp" class="form-text2">How can you reframe your negative thoughts?</div>
                         <textarea class="form-control" name="positive_thoughts" rows="4"></textarea>
                     </div>
-                    <input class="btn btn-primary" type="submit" value="Submit">
+                    <div class="float-end">
+                        <input class="btn btn-primary" type="submit" value="Submit">
+                    </div>
                 </div>
             </div>
         </form>
