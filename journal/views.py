@@ -150,7 +150,9 @@ def delete_entry(request, id):
 
 
 def distortions(request):
-    return render(request, "journal/distortions.html")
+    return render(request, "journal/distortions.html", {
+        "distortions": Distortion.objects.all()
+    })
 
 
 @csrf_exempt

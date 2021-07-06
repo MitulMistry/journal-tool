@@ -70,8 +70,15 @@
                         <textarea class="form-control" name="negative_thoughts" rows="4"></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="distortions" class="form-label2">Cognitive Distortions</label>
-                        <div id="distortionsHelp" class="form-text2">Identify from list</div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="distortions" class="form-label2">Cognitive Distortions</label>
+                                <div id="distortionsHelp" class="form-text2">Identify from list</div>
+                            </div>
+                            <div class="col">
+                                <a class="btn btn-primary btn-sm float-end" href="{% url 'distortions' %}" role="button" target="_blank">Learn More</a>
+                            </div>
+                        </div>
 
                         {% for distortion in distortions %}
                             <input type="checkbox" class="btn-check" id="btn-distortion-{{ distortion.id }}" autocomplete="off">
@@ -83,9 +90,7 @@
                         <div id="positiveHelp" class="form-text2">How can you reframe your negative thoughts?</div>
                         <textarea class="form-control" name="positive_thoughts" rows="4"></textarea>
                     </div>
-                    <div class="float-end">
-                        <input class="btn btn-primary" type="submit" value="Submit">
-                    </div>
+                    <input class="btn btn-primary float-end" type="submit" value="Submit">                    
                 </div>
             </div>
         </form>

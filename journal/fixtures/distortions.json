@@ -3,7 +3,7 @@
       "model": "journal.distortion",
       "pk": 1,
       "fields": {
-        "name": "Polarized thinking",
+        "name": "Polarized Thinking",
         "icon": "fas fa-adjust",
         "blurb": "You look at things in absolute, black-and-white categories.",
         "description": ""
@@ -23,7 +23,7 @@
       "model": "journal.distortion",
       "pk": 3,
       "fields": {
-        "name": "Mental filtering",
+        "name": "Mental Filtering",
         "icon": "fas fa-filter",
         "blurb": "You dwell on the negatives and ignore the positives.",
         "description": ""
@@ -33,7 +33,7 @@
       "model": "journal.distortion",
       "pk": 4,
       "fields": {
-        "name": "Discounting the positives",
+        "name": "Discounting the Positives",
         "icon": "fas fa-minus-circle",
         "blurb": "You insist that your accomplishments or positive qualities don’t count.",
         "description": ""
@@ -43,7 +43,7 @@
       "model": "journal.distortion",
       "pk": 5,
       "fields": {
-        "name": "Mind reading",
+        "name": "Mind Reading",
         "icon": "fas fa-brain",
         "blurb": "You assume that people are reacting negatively to you (jumping to conclusions).",
         "description": ""
@@ -53,7 +53,7 @@
       "model": "journal.distortion",
       "pk": 6,
       "fields": {
-        "name": "Fortune-telling",
+        "name": "Fortune-Telling",
         "icon": "fas fa-hat-wizard",
         "blurb": "You predict that things will turn out badly (jumping to conclusions).",
         "description": ""
@@ -73,7 +73,7 @@
       "model": "journal.distortion",
       "pk": 8,
       "fields": {
-        "name": "Emotional reasoning",
+        "name": "Emotional Reasoning",
         "icon": "fas fa-heart-broken",
         "blurb": "You reason from how you feel: \"I feel like an idiot, so I must be one.\"",
         "description": ""
@@ -83,7 +83,7 @@
       "model": "journal.distortion",
       "pk": 9,
       "fields": {
-        "name": "\"Should\" statements",
+        "name": "\"Should\" Statements",
         "icon": "fas fa-directions",
         "blurb": "You criticize yourself or other people with \"shoulds,\" \"shouldn’ts,\" \"musts,\" \"oughts,\" and \"have-tos.\"",
         "description": ""
@@ -113,7 +113,7 @@
       "model": "journal.distortion",
       "pk": 12,
       "fields": {
-        "name": "Control fallacies",
+        "name": "Control Fallacies",
         "icon": "fas fa-gamepad",
         "blurb": "You feel in control of (or responsible for) everything in your life (or the lives of others), or you feel you have no control at all.",
         "description": ""
@@ -123,7 +123,7 @@
       "model": "journal.distortion",
       "pk": 13,
       "fields": {
-        "name": "Fallacy of fairness",
+        "name": "Fallacy of Fairness",
         "icon": "fas fa-balance-scale",
         "blurb": "You believe you know what’s fair and what isn’t, and it upsets you when others disagree with you.",
         "description": ""
@@ -133,7 +133,7 @@
       "model": "journal.distortion",
       "pk": 14,
       "fields": {
-        "name": "Fallacy of change",
+        "name": "Fallacy of Change",
         "icon": "fas fa-bolt",
         "blurb": "You expect others to change their ways to suit your expectations or needs, particularly when you pressure them enough.",
         "description": ""
@@ -143,7 +143,7 @@
       "model": "journal.distortion",
       "pk": 15,
       "fields": {
-        "name": "Always being right",
+        "name": "Always Being Right",
         "icon": "fas fa-crown",
         "blurb": "You see your own opinions as facts of life, trumping everything else, including evidence and the feelings of others.",
         "description": ""
