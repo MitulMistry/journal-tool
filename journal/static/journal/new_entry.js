@@ -1,6 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
+    enable_tooltips();
     set_current_datetime();
 })
+
+function enable_tooltips() {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+}
 
 function set_current_datetime() {
     const input_date = document.querySelector('#input-date');

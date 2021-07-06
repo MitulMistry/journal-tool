@@ -156,3 +156,12 @@ body {
 	border-color: #699eeb; */
 	box-shadow: 0 0 0 .25rem rgba(156, 194, 255, 0.5);
 }
+
+/* Tooltip */
+.tooltip-inner {
+    background-color: #0f6af1;
+  }
+
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: #0f6af1;
+  }
