@@ -117,7 +117,42 @@ def entries(request):
 @login_required
 def new_entry(request):
     if request.method == "POST":
-        pass
+        
+        date = request.POST["date"]
+        time = request.POST["time"]
+        mood = request.POST["mood"]
+        events = request.POST["events"]
+
+        try:
+            activities = request.POST.getlist(["activities"])
+        except:
+            activities = []
+
+        negative_thoughts = request.POST["negative_thoughts"]
+
+        try:
+            distortions = request.POST.getlist(["distortions"])
+        except:
+            distortions = []
+            
+        positive_thoughts = request.POST["positive_thoughts"]
+
+        # Attempt to create new Entry
+        try:
+            entry = Entry(
+                user=request.user,
+                mood=mood,
+                events=events,
+                negative_thoughts=negative_thoughts,
+                positive_thoughts=positive_thoughts
+            )
+            entry.save()
+        except:
+            return render(request, "journal/new_entry.html", {
+                "message": "Entry creation failed."
+            })
+
+        return HttpResponseRedirect(reverse("index"))
 
     else:
         return render(request, "journal/new_entry.html", {

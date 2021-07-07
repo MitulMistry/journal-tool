@@ -5,7 +5,7 @@
     <h3>New Entry</h3>
 
     <div class="p-5 mb-4 bg-light2 rounded-3">
-        <form action="{% url 'register_user' %}" method="post">
+        <form action="{% url 'new_entry' %}" method="post">
             {% csrf_token %}
             <div class="row">
                 <div class="col">
@@ -46,18 +46,18 @@
                         <div id="eventsHelp" class="form-text2">What happened today?</div>
                         <textarea class="form-control" name="events" rows="6"></textarea>
                     </div>
-                    <div class="mb-3" id="activities-div">
+                    <div class="mb-3">
                         <label for="activities" class="form-label2">Activities</label>
                         <div id="activitiesHelp" class="form-text2">What did you do today?</div>
 
                         <div class="input-group">
-                            <input class="form-control" type="text" id="add-activity-form" name="activities">
+                            <input class="form-control" type="text" id="add-activity-form">
                             <button type="button" class="btn btn-primary btn-sm" id="add-activity-btn">Add New</button>
                         </div>
 
                         <div id="activities-list-div">
                             {% for activity in activities %}
-                                <input type="checkbox" class="btn-check" id="btn-activity-{{ activity.id }}" autocomplete="off">
+                                <input type="checkbox" class="btn-check" name="activities" id="btn-activity-{{ activity.id }}" autocomplete="off">
                                 <label class="btn btn-activity btn-sm" for="btn-activity-{{ activity.id }}">{{ activity.name.capitalize }}</label>
                             {% endfor %}
                         </div>
@@ -81,7 +81,7 @@
                         </div>
 
                         {% for distortion in distortions %}
-                            <input type="checkbox" class="btn-check" id="btn-distortion-{{ distortion.id }}" autocomplete="off">
+                            <input type="checkbox" class="btn-check" name="distortions" id="btn-distortion-{{ distortion.id }}" autocomplete="off">
                             <label class="btn btn-distortion btn-sm" for="btn-distortion-{{ distortion.id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ distortion.blurb }}"><i class="{{ distortion.icon }}"></i> {{ distortion.name }}</label>
                         {% endfor %}
                     </div>
