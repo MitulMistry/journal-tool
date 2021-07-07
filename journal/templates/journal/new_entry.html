@@ -55,7 +55,7 @@
                             <button type="button" class="btn btn-primary btn-sm" id="add-activity-btn">Add New</button>
                         </div>
 
-                        <div class="activities-div">
+                        <div id="activities-list-div">
                             {% for activity in activities %}
                                 <input type="checkbox" class="btn-check" id="btn-activity-{{ activity.id }}" autocomplete="off">
                                 <label class="btn btn-activity btn-sm" for="btn-activity-{{ activity.id }}">{{ activity.name.capitalize }}</label>

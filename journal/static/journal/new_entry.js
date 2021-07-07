@@ -31,7 +31,8 @@ function format_zero(val) {
 function initialize_add_activity() {
     document.querySelector('#add-activity-btn').onclick = function() {
 
-        const name = document.querySelector('#add-activity-form').value;
+        const form = document.querySelector('#add-activity-form');
+        const name = form.value;
 
         fetch('/activities/new', {
             method: 'POST',
@@ -52,15 +53,18 @@ function initialize_add_activity() {
                 checkbox.className = 'btn-check';
                 checkbox.id = element_id;
                 checkbox.setAttribute('autocomplete', 'off');
+                checkbox.setAttribute('checked', '');
 
                 const label = document.createElement('label');
                 label.className = 'btn btn-activity btn-sm';
                 label.setAttribute('for', element_id);
                 label.innerHTML = capitalize(result['name']);
                 
-                const div = document.querySelector('#activities-div');
-                div.append(checkbox);
-                div.append(label);
+                const div = document.querySelector('#activities-list-div');
+                div.appendChild(checkbox);
+                div.appendChild(label);
+
+                form.value = '';
             }
         });
     };
