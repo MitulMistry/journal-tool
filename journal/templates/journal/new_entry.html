@@ -57,7 +57,7 @@
 
                         <div id="activities-list-div">
                             {% for activity in activities %}
-                                <input type="checkbox" class="btn-check" name="activities" id="btn-activity-{{ activity.id }}" autocomplete="off">
+                                <input type="checkbox" class="btn-check" name="activities" value="{{ activity.id }}" id="btn-activity-{{ activity.id }}" autocomplete="off">
                                 <label class="btn btn-activity btn-sm" for="btn-activity-{{ activity.id }}">{{ activity.name.capitalize }}</label>
                             {% endfor %}
                         </div>
@@ -81,7 +81,7 @@
                         </div>
 
                         {% for distortion in distortions %}
-                            <input type="checkbox" class="btn-check" name="distortions" id="btn-distortion-{{ distortion.id }}" autocomplete="off">
+                            <input type="checkbox" class="btn-check" name="distortions" value="{{ distortion.id }}" id="btn-distortion-{{ distortion.id }}" autocomplete="off">
                             <label class="btn btn-distortion btn-sm" for="btn-distortion-{{ distortion.id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ distortion.blurb }}"><i class="{{ distortion.icon }}"></i> {{ distortion.name }}</label>
                         {% endfor %}
                     </div>

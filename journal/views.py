@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .models import User, Entry, Activity, Distortion
 
+
 def index(request):
     return render(request, "journal/index.html")
 
@@ -111,7 +112,9 @@ def delete_user(request, id):
 
 @login_required
 def entries(request):
-    return render(request, "journal/entries.html")
+    return render(request, "journal/entries.html", {
+        "entries": request.user.entries.all()
+    })
 
 
 @login_required
@@ -122,20 +125,18 @@ def new_entry(request):
         time = request.POST["time"]
         mood = request.POST["mood"]
         events = request.POST["events"]
-
-        try:
-            activities = request.POST.getlist(["activities"])
-        except:
-            activities = []
-
         negative_thoughts = request.POST["negative_thoughts"]
+        positive_thoughts = request.POST["positive_thoughts"]
 
         try:
-            distortions = request.POST.getlist(["distortions"])
+            activities = request.POST.getlist("activities")
         except:
-            distortions = []
-            
-        positive_thoughts = request.POST["positive_thoughts"]
+            activities = []        
+
+        try:
+            distortions = request.POST.getlist("distortions")
+        except:
+            distortions = []        
 
         # Attempt to create new Entry
         try:
@@ -145,14 +146,26 @@ def new_entry(request):
                 events=events,
                 negative_thoughts=negative_thoughts,
                 positive_thoughts=positive_thoughts
-            )
+            )          
             entry.save()
+
+            # Associations need to be established after entry is saved
+            for activity_id in activities:
+                activity = Activity.objects.get(pk=int(activity_id), user=request.user)
+                entry.activity_set.add(activity)
+                
+            for distortion_id in distortions:
+                distortion = Distortion.objects.get(pk=int(distortion_id))
+                entry.distortion_set.add(distortion)
+
         except:
             return render(request, "journal/new_entry.html", {
+                "activities": request.user.activities.all(),
+                "distortions": Distortion.objects.all(),
                 "message": "Entry creation failed."
             })
-
-        return HttpResponseRedirect(reverse("index"))
+    
+        return HttpResponseRedirect(reverse("entries"))
 
     else:
         return render(request, "journal/new_entry.html", {
