@@ -2,41 +2,57 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models.deletion import CASCADE
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.urls.base import reverse
 from django.utils.text import Truncator
 from django.utils import timezone
 
 
 class User(AbstractUser):
-    
-    # Return dict of dicts structured:
-    # {distortion_id: {"distortion": distortion, "count": count}}
-    def top_distortions(self):        
+
+    def top_distortions(self):
         distortions_dict = {}
 
+        # Create dict of dicts structured:
+        # {distortion_id: {"distortion": distortion, "count": count}}
         for entry in self.entries.all():
             for distortion in entry.distortion_set.all():
-                
-                # if distortion.id in distortions_dict:
-                #     distortions_dict[distortion.id][1] += 1
-                # else:
-                #     distortions_dict[distortion.id] = [distortion, 1]
 
                 if distortion.id in distortions_dict:
                     distortions_dict[distortion.id]["count"] += 1
                 else:
                     distortions_dict[distortion.id] = {"distortion": distortion, "count": 1}
 
-        return distortions_dict
+        # Get rid of id keys from dict since no longer needed and convert to list
+        distortions_list = distortions_dict.values()
 
-    # Return list of lists structured:
-    # ["activity": activity, "count": number]
+        # Return sorted list of distortions based on count, descending
+        return sorted(distortions_list, key = lambda i: i["count"], reverse=True)
+
+
     def top_activities(self):
-        activities = []
-        return activities
-    
+        activities_dict = {}
+
+        # Create dict of dicts structured:
+        # {activity_id: {"activity": activity, "count": count}}
+        for entry in self.entries.all():
+            for activity in entry.activity_set.all():
+
+                if activity.id in activities_dict:
+                    activities_dict[activity.id]["count"] += 1
+                else:
+                    activities_dict[activity.id] = {"activity": activity, "count": 1}
+
+        # Get rid of id keys from dict since no longer needed and convert to list
+        activities_list = activities_dict.values()
+
+        # Return sorted list of activities based on count, descending
+        return sorted(activities_list, key = lambda i: i["count"], reverse=True)
+
+
     # Return 4 most recent entries
     def recent_entries(self):
         return self.entries.order_by('-timestamp')[:4]
+
 
     # Return string representation of object
     def __str__(self):
