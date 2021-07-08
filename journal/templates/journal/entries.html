@@ -3,4 +3,46 @@
 
 {% block body %}
     <h3>Entries</h3>
+
+    <div class="container-fluid">
+        <div class="row">
+            {% for entry in entries %}
+                <div class="card card-entry">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title"> {{ entry.timestamp }}</h5>
+                            </div>
+                            <div class="col">
+                                <p class="float-end">Mood: {{ entry.mood }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                {% if entry.activity_set.all.exists %}
+                                    <h6 class="card-subtitle mb-2 text-muted">Activities</h6>
+                                    <h6>
+                                        {% for activity in entry.activity_set.all %}
+                                            <span class="badge rounded-pill activity-bg">{{ activity.name.capitalize }}</span>
+                                        {% endfor %}
+                                    </h6>
+                                {% endif %}
+                                {% if entry.distortion_set.all.exists %}
+                                    <h6 class="card-subtitle mb-2 text-muted">Distortions</h6>
+                                    <h6>
+                                        {% for distortion in entry.distortion_set.all %}
+                                            <span class="badge rounded-pill distortion-bg"><i class="{{ distortion.icon }}"></i> {{ distortion.name }}</span>
+                                        {% endfor %}
+                                    </h6>
+                                {% endif %}
+                            </div>
+                            <div class="col" style="margin-top:1rem;">
+                                <p class="card-text">{{ entry.truncated_events }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

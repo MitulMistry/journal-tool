@@ -6,7 +6,9 @@
         <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold">Journal Tool</h1>
             <p class="col-md-8 fs-4">Journal events in your life and track your mood.</p>
-            <a href="{% url 'register_user' %}" class="btn btn-primary btn-lg" role="button">Register</a>
+            {% if not user.is_authenticated %}
+                <a href="{% url 'register_user' %}" class="btn btn-primary btn-lg" role="button">Register</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

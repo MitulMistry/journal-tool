@@ -1,7 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models.deletion import CASCADE
-from django.core.validators import MaxValueValidator, MinValueValidator 
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.utils.text import Truncator
 
 
 class User(AbstractUser):
@@ -19,6 +20,9 @@ class Entry(models.Model):
     events = models.CharField(max_length=1500, blank=True, default="")
     negative_thoughts = models.CharField(max_length=1500, blank=True, default="")
     positive_thoughts = models.CharField(max_length=1500, blank=True, default="")
+
+    def truncated_events(self):
+        return Truncator(self.events).words(50)
 
     def __str__(self):
         return f"{self.user.username}'s entry on {self.timestamp}"

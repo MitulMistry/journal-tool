@@ -7,12 +7,20 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.body {    
+.body {
     padding-top: 1rem;
 }
 
 footer.text-center {
     padding-bottom: 1rem;
+}
+
+h5 {
+    font-size: 1.2rem;
+}
+
+h6 {
+    font-size: 1.1rem;
 }
 
 .bg-light2 {
@@ -42,7 +50,7 @@ footer.text-center {
 
 .nav-link {
     font-weight: 500;
-    font-size: 1.1rem;    
+    font-size: 1.1rem;
 }
 
 .dropdown-item {
@@ -58,7 +66,7 @@ footer.text-center {
     background-color: #ededf2;
 }
 
-.form-control {	
+.form-control {
 	/* border: 2px solid #ced4da; */
     border: 2px solid #d2dae7;
 	border-radius: .5rem;
@@ -92,7 +100,7 @@ footer.text-center {
     padding: .3rem 1rem;
 }
 
-.btn-primary:hover {    
+.btn-primary:hover {
 	background-color: #42b4b4;
 	border-color: #42b4b4;
 }
@@ -140,13 +148,38 @@ footer.text-center {
 	box-shadow: 0 0 0 .25rem rgba(253, 158, 163, 0.5);
 }
 
-.distortion-red {
+.distortion-color {
     color: #f65e5e;
+}
+
+.distortion-bg {
+    background-color: #f65e5e;
+}
+
+.activity-bg {
+    background-color: #699eeb;
+}
+
+span.rounded-pill {
+    margin-bottom: .35rem;
+}
+
+.card-subtitle {
+    margin-top: 1rem;
 }
 
 .card-distortion {
     width: 18rem;
     background-color: #f8f9fa;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+}
+
+.card-entry {
+    width: 36rem;
+    background-color: #f8f9fa;
+    border-radius: 1rem;
+    border: 0;
     margin-bottom: 1rem;
     margin-right: 1rem;
 }
@@ -163,7 +196,7 @@ footer.text-center {
     margin-right: .25rem;
 }
 
-.btn-activity:hover {    
+.btn-activity:hover {
     color: #fff;
 	background-color: #90b5ec;
 	border-color: #90b5ec;
