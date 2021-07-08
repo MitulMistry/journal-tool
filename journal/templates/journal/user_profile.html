@@ -2,5 +2,75 @@
 {% load static %}
 
 {% block body %}
-    <h3>User Profile</h3>
+    <h3>{{ user.username }}</h3>
+
+    <div class="p-5 mb-4 bg-light2 rounded-3">
+        <div class="row">
+            <div class="col">
+                {% if top_distortions %} 
+                    <h5>Top Distortions</h5>
+                    {% for list in top_distortions %}
+                        <span class="badge rounded-pill distortion-bg" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ list.distortion.blurb }}"><i class="{{ list.distortion.icon }}"></i> {{ list.distortion.name }} &nbsp {{ list.count }}</span>
+                    {% endfor %}
+                {% endif %}
+
+                {% if top_activities %}
+                    <h5>Top Activities</h5>
+                    {% for list in top_activities %}
+                        <span class="badge rounded-pill activity-bg">{{ list.activity.name.capitalize }} &nbsp {{ list.count }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <h5>Recent Entries</h5>
+            {% for entry in recent_entries %}
+            <div class="card card-entry">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="card-title">{{ entry.timestamp }}</h5>
+                        </div>
+                        <div class="col">
+                            <p class="float-end">Mood: {{ entry.mood }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-5">
+                            {% if entry.activity_set.all.exists %}
+                                <h6 class="card-subtitle mb-2 text-muted">Activities</h6>
+                                <h6>
+                                    {% for activity in entry.activity_set.all %}
+                                        <span class="badge rounded-pill activity-bg">{{ activity.name.capitalize }}</span>
+                                    {% endfor %}
+                                </h6>
+                            {% endif %}
+                            {% if entry.distortion_set.all.exists %}
+                                <h6 class="card-subtitle mb-2 text-muted">Distortions</h6>
+                                <h6>
+                                    {% for distortion in entry.distortion_set.all %}
+                                        <span class="badge rounded-pill distortion-bg" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ distortion.blurb }}"><i class="{{ distortion.icon }}"></i> {{ distortion.name }}</span>
+                                    {% endfor %}
+                                </h6>
+                            {% endif %}
+                        </div>
+
+                        <div class="col" style="margin-top:1rem;">
+                            <p class="card-text">{{ entry.truncated_events }}</p>
+                            <p class="float-end"><a href="{% url 'entry' entry.id %}">View More</a></p>
+                        </div>                            
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'journal/tooltips.js' %}"></script>
 {% endblock %}

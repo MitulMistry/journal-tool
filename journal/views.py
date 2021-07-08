@@ -271,5 +271,11 @@ def delete_activity(request, id):
 
 
 @login_required
-def user_profile(request, id):
-    return render(request, "journal/user_profile.html")
+def user_profile(request):
+    user = request.user
+    return render(request, "journal/user_profile.html", {
+        "user": user,
+        "top_distortions": user.top_distortions(),
+        "top_activities": user.top_activities(),
+        "recent_entries": user.recent_entries()
+    })

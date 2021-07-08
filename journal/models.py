@@ -8,6 +8,22 @@ from django.utils import timezone
 
 class User(AbstractUser):
 
+    # Return list of lists structured:
+    # ["distortion": distortion, "count": number]
+    def top_distortions(self):
+        distortions = []
+        return distortions
+
+    # Return list of lists structured:
+    # ["activity": activity, "count": number]
+    def top_activities(self):
+        activities = []
+        return activities
+    
+    # Return 4 most recent entries
+    def recent_entries(self):
+        return self.entries.order_by('-timestamp')[:4]
+
     # Return string representation of object
     def __str__(self):
         return f"{self.username}: {self.email}"
