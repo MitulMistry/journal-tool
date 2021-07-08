@@ -12,11 +12,17 @@ body {
 }
 
 footer.text-center {
+    margin-top: 1rem;
     padding-bottom: 1rem;
 }
 
 a {
     text-decoration: none;
+}
+
+h3 {
+    margin-top: .5rem;
+    margin-bottom: 1.5rem;
 }
 
 h5 {
@@ -173,8 +179,10 @@ span.rounded-pill {
 }
 
 .card-distortion {
-    width: 18rem;
+    width: 21rem;
     background-color: #f8f9fa;
+    border-radius: 1rem;
+    border: 0;
     margin-bottom: 1rem;
     margin-right: 1rem;
 }

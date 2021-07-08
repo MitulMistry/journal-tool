@@ -5,20 +5,22 @@
     <h3>Cognitive Distortions</h3>
 
     <div class="p-5 mb-4 bg-light rounded-3">
-        <h4>What's a Cognitive Distortion?</h4>
+        <h4 class="mb-4">What's a Cognitive Distortion?</h4>
 
         <p>A cognitive distortion is an exaggerated or irrational thought pattern involved in the onset or perpetuation of psychopathological states, such as depression and anxiety.</p>
         <p>Cognitive distortions are thoughts that cause individuals to perceive reality inaccurately. According to Aaron T. Beck's cognitive model, a negative outlook on reality, sometimes called negative schemas (or schemata), is a factor in symptoms of emotional dysfunction and poorer subjective well-being. Specifically, negative thinking patterns reinforce negative emotions and thoughts. During difficult circumstances, these distorted thoughts can contribute to an overall negative outlook on the world and a depressive or anxious mental state. According to hopelessness theory and Beck's theory, the meaning or interpretation that people give to their experience importantly influences whether they will become depressed and whether they will suffer severe, repeated, or long-duration episodes of depression.</p>
         <p>Challenging and changing cognitive distortions is a key element of cognitive behavioral therapy (CBT).</p>
         <p>From <a href="https://en.wikipedia.org/wiki/Cognitive_distortion">Wikipedia</a>.</p>
-
-        <h4 style="margin-top: 3rem; margin-bottom: 1rem;">Types of Distortions</h4>
+    </div>
+    
+    <div class="container-fluid">
+        <h4 style="margin-top: 2rem; margin-bottom: 1rem;">Types of Distortions</h4>
         <div class="row">
             {% for distortion in distortions %}
                 <div class="card card-distortion">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="{{ distortion.icon }} distortion-color"></i> {{ distortion.name }}</h4>
-                        <p>{{ distortion.blurb }}</p>
+                    <div class="card-body pt-4">
+                        <h5 class="card-title mb-3"><i class="{{ distortion.icon }} distortion-color"></i><span style="margin-left: .6rem;">{{ distortion.name }}</span></h4>
+                        <p">{{ distortion.blurb }}</p>
                     </div>
                 </div>
             {% endfor %}
