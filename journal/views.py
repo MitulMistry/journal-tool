@@ -8,6 +8,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
+from django.core.paginator import Paginator
 
 from .models import User, Entry, Activity, Distortion
 
@@ -113,8 +114,18 @@ def delete_user(request, id):
 
 @login_required
 def entries(request):
+    entries = request.user.entries.all().order_by("-timestamp")
+    p = Paginator(entries, 10)
+    page_number = request.GET.get('page')
+    try:
+        page_obj = p.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = p.page(1)
+    except EmptyPage:
+        page_obj = p.page(p.num_pages)
+    
     return render(request, "journal/entries.html", {
-        "entries": request.user.entries.all()
+        "page_obj": page_obj
     })
 
 

@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="row">
 
-            {% for entry in entries %}
+            {% for entry in page_obj.object_list %}
                 <div class="card card-entry">
                     <div class="card-body">
 
@@ -43,7 +43,7 @@
                             <div class="col" style="margin-top:1rem;">
                                 <p class="card-text">{{ entry.truncated_events }}</p>
                                 <p class="float-end"><a href="{% url 'entry' entry.id %}">View More</a></p>
-                            </div>                            
+                            </div>
                         </div>
 
                     </div>
@@ -51,6 +51,24 @@
             {% endfor %}
 
         </div>
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination d-flex justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                {% endif %}
+
+                {% if page_obj.has_previous or page_obj.has_next %}
+                <li class="page-item active" aria-current="page">
+                    <p class="page-link">{{page_obj.number}} <span class="sr-only">(current)</span></p>
+                </li>
+                {% endif %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                {% endif %}
+            </ul>
+        </nav>
     </div>
 {% endblock %}
 
