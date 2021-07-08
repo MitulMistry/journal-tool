@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models.deletion import CASCADE
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.text import Truncator
+from django.utils import timezone
 
 
 class User(AbstractUser):
@@ -15,7 +16,7 @@ class User(AbstractUser):
 # User has many Entries
 class Entry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="entries")
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(default=timezone.now)
     mood = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     events = models.CharField(max_length=1500, blank=True, default="")
     negative_thoughts = models.CharField(max_length=1500, blank=True, default="")

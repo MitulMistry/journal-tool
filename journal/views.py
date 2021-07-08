@@ -7,6 +7,7 @@ from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
+from datetime import datetime
 
 from .models import User, Entry, Activity, Distortion
 
@@ -17,7 +18,7 @@ def index(request):
 
 def login_user(request):
     if request.method == "POST":
-        
+
         # Attempt to sign user in
         username = request.POST["username"]
         password = request.POST["password"]
@@ -52,7 +53,7 @@ def register_user(request):
             return render(request, "journal/register.html", {
                 "message": "Passwords must match."
             })
-        
+
         # Attempt to create new user
         try:
             user = User.objects.create_user(username, email, password)
@@ -60,7 +61,7 @@ def register_user(request):
         except IntegrityError:
             return render(request, "journal/register.html", {
                 "message": "Username already taken."
-            })            
+            })
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
@@ -81,7 +82,7 @@ def edit_user(request, id):
                 "user": request.user,
                 "message": "Passwords must match."
             })
-        
+
         # Attempt to edit user
         try:
             user = request.user
@@ -92,7 +93,7 @@ def edit_user(request, id):
         except IntegrityError:
             return render(request, "journal/register.html", {
                 "message": "Username already taken."
-            })            
+            })
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
@@ -120,7 +121,7 @@ def entries(request):
 @login_required
 def new_entry(request):
     if request.method == "POST":
-        
+
         date = request.POST["date"]
         time = request.POST["time"]
         mood = request.POST["mood"]
@@ -131,29 +132,35 @@ def new_entry(request):
         try:
             activities = request.POST.getlist("activities")
         except:
-            activities = []        
+            activities = []
 
         try:
             distortions = request.POST.getlist("distortions")
         except:
-            distortions = []        
+            distortions = []
+
+        # "date": "2021-07-07"
+        # "time": "23:24"
+        datetime_string = f"{date} {time}"
+        timestamp = datetime.strptime(datetime_string, "%Y-%d-%m %H:%M")
 
         # Attempt to create new Entry
         try:
             entry = Entry(
                 user=request.user,
+                timestamp=timestamp,
                 mood=mood,
                 events=events,
                 negative_thoughts=negative_thoughts,
                 positive_thoughts=positive_thoughts
-            )          
+            )
             entry.save()
 
             # Associations need to be established after entry is saved
             for activity_id in activities:
                 activity = Activity.objects.get(pk=int(activity_id), user=request.user)
                 entry.activity_set.add(activity)
-                
+
             for distortion_id in distortions:
                 distortion = Distortion.objects.get(pk=int(distortion_id))
                 entry.distortion_set.add(distortion)
@@ -164,7 +171,7 @@ def new_entry(request):
                 "distortions": Distortion.objects.all(),
                 "message": "Entry creation failed."
             })
-    
+
         return HttpResponseRedirect(reverse("entries"))
 
     else:
@@ -207,19 +214,19 @@ def distortions(request):
 @login_required
 def new_activity(request):
     if request.method == "POST":
-        
+
         # Load data from request
         data = json.loads(request.body)
         if data.get("name") is not None:
             name = data["name"]
-        
+
         # Check if activity name already exists
         activity = request.user.activities.all().filter(name=name.lower())
         if activity.exists():
             return JsonResponse({
                 "error": "Activity already exists."
             }, status=400)
-        
+
         activity = Activity(user=request.user,name=name.lower())
         activity.save()
 
@@ -238,7 +245,7 @@ def new_activity(request):
 def edit_activity(request, id):
     if request.method == "PUT":
         pass
-    
+
     else:
         pass
 
