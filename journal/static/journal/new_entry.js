@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     enable_tooltips();
     set_current_datetime();
     initialize_add_activity();
-})
+});
 
 function enable_tooltips() {
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))

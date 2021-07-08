@@ -183,7 +183,18 @@ def new_entry(request):
 
 @login_required
 def entry(request, id):
-    pass
+
+    # Query for requested Entry
+    try:
+        entry = Entry.objects.get(pk=id)
+    except:
+        return render(request, "journal/index.html", {
+            "message": "Entry not found."
+        })
+
+    return render(request, "journal/entry.html", {
+        "entry": entry
+    })
 
 
 @login_required

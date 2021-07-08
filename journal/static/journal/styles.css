@@ -15,6 +15,10 @@ footer.text-center {
     padding-bottom: 1rem;
 }
 
+a {
+    text-decoration: none;
+}
+
 h5 {
     font-size: 1.2rem;
 }
@@ -219,11 +223,27 @@ span.rounded-pill {
     margin-top: .75rem;
 }
 
+.entry-header {
+    margin-top: 2rem;
+}
+
 /* Tooltip */
 .tooltip-inner {
     background-color: #0f6af1;
-  }
+}
 
 .tooltip.bs-tooltip-top .tooltip-arrow::before {
     border-top-color: #0f6af1;
-  }
+}
+
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: #0f6af1;
+}
+
+.tooltip.bs-tooltip-start .tooltip-arrow::before {
+    border-left-color: #0f6af1;
+}
+
+.tooltip.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: #0f6af1;
+}
