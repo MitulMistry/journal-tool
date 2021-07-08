@@ -9,9 +9,11 @@
             <div class="col">
                 {% if top_distortions %} 
                     <h5>Top Distortions</h5>
-                    {% for list in top_distortions %}
-                        <span class="badge rounded-pill distortion-bg" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ list.distortion.blurb }}"><i class="{{ list.distortion.icon }}"></i> {{ list.distortion.name }} &nbsp {{ list.count }}</span>
+                    <h5>
+                    {% for id, dict in top_distortions.items %}
+                        <span class="badge rounded-pill distortion-bg" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ dict.distortion.blurb }}"><i class="{{ dict.distortion.icon }}"></i> {{ dict.distortion.name }} &nbsp {{ dict.count }}</span>
                     {% endfor %}
+                    </h5>
                 {% endif %}
 
                 {% if top_activities %}

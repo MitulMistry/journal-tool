@@ -7,12 +7,26 @@ from django.utils import timezone
 
 
 class User(AbstractUser):
+    
+    # Return dict of dicts structured:
+    # {distortion_id: {"distortion": distortion, "count": count}}
+    def top_distortions(self):        
+        distortions_dict = {}
 
-    # Return list of lists structured:
-    # ["distortion": distortion, "count": number]
-    def top_distortions(self):
-        distortions = []
-        return distortions
+        for entry in self.entries.all():
+            for distortion in entry.distortion_set.all():
+                
+                # if distortion.id in distortions_dict:
+                #     distortions_dict[distortion.id][1] += 1
+                # else:
+                #     distortions_dict[distortion.id] = [distortion, 1]
+
+                if distortion.id in distortions_dict:
+                    distortions_dict[distortion.id]["count"] += 1
+                else:
+                    distortions_dict[distortion.id] = {"distortion": distortion, "count": 1}
+
+        return distortions_dict
 
     # Return list of lists structured:
     # ["activity": activity, "count": number]
@@ -53,7 +67,7 @@ class Activity(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
-        return f"Activity: {self.name}"
+        return f"{self.name}"
 
 
 # Entries have many Distortions, Distortions have many Entries
@@ -65,4 +79,4 @@ class Distortion(models.Model):
     description = models.CharField(max_length=2000, blank=True, default="")
 
     def __str__(self):
-        return f"Distortion: {self.name}"
+        return f"{self.name}"
