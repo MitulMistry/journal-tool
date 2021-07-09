@@ -297,14 +297,18 @@ def new_activity(request):
 
 
 @login_required
+def edit_activities(request):    
+    return render(request, "journal/edit_activities.html", {
+        "activities": request.user.activities.all()
+    })
+
+@login_required
 def edit_activity(request, id):
     if request.method == "POST":
         pass
 
     else:
-        return render(request, "journal/edit_activities.html", {
-            "activities": request.user.activities.all()
-        })
+        return HttpResponseRedirect(reverse("index"))
 
 
 @login_required

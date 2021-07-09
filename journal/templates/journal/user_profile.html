@@ -7,7 +7,7 @@
     <div class="p-5 mb-4 bg-light2 rounded-3">
         <div class="row">
             <div class="col">
-                {% if top_distortions %} 
+                {% if top_distortions %}
                     <h5>Top Distortions</h5>
                     <h5 class="mb-5">
                     {% for dict in top_distortions %}
@@ -24,9 +24,20 @@
                     {% endfor %}
                     </h5>
                 {% endif %}
+
+                <div class="mt-5 mb-5">
+                    <a class="btn btn-primary btn-sm" href="{% url 'edit_activities' %}" role="button" style="margin-right: .5rem;">Edit Activities</a>
+                    <a class="btn btn-primary btn-sm" href="{% url 'edit_user' %}" role="button" style="margin-right: .5rem;">Edit User</a>
+                    <a class="btn btn-primary btn-sm" href="{% url 'delete_user' %}" role="button">Delete Account</a>
+                </div>
+            </div>
+            <div class="col">
+                
             </div>
         </div>
+    </div>
 
+    <div class="container-fluid">
         <div class="row">
             <h5>Recent Entries</h5>
             {% for entry in recent_entries %}
@@ -65,7 +76,7 @@
                         <div class="col" style="margin-top:1rem;">
                             <p class="card-text">{{ entry.truncated_events }}</p>
                             <p class="float-end"><a href="{% url 'entry' entry.id %}">View More</a></p>
-                        </div>                            
+                        </div>
                     </div>
 
                 </div>
