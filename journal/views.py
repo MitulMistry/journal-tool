@@ -278,9 +278,7 @@ def new_activity(request):
         # Check if activity name already exists
         activity = request.user.activities.all().filter(name=name.lower())
         if activity.exists():
-            return JsonResponse({
-                "error": "Activity already exists."
-            }, status=400)
+            return JsonResponse({"error": "Activity already exists."}, status=422)
 
         activity = Activity(user=request.user,name=name.lower())
         activity.save()
@@ -302,13 +300,46 @@ def edit_activities(request):
         "activities": request.user.activities.all()
     })
 
+@csrf_exempt
 @login_required
 def edit_activity(request, id):
-    if request.method == "POST":
-        pass
+    if request.method == "PUT":
+        
+        # Query for requested activity
+        try:
+            activity = Activity.objects.get(pk=id)
+        except:
+            return JsonResponse({"error": "Activity not found."}, status=404)
+
+        # Check if user owns activity
+        if activity.user != request.user:
+            return JsonResponse({"error": "Unauthorized."}, status=401)      
+
+        # Attempt to update activity
+        try:
+            data = json.loads(request.body)
+            if data.get("name") is not None:
+
+                # Check if activity name already exists
+                activity_check = request.user.activities.all().filter(name=data["name"].lower())
+                if activity_check.exists():
+                    return JsonResponse({"error": "Activity already exists."}, status=422)
+                else:
+                    activity.name = data["name"].lower()
+
+            activity.save()
+
+            return JsonResponse({
+                "id": activity.id,
+                "name": activity.name
+            })
+        except:
+            return JsonResponse({"error": "Failed to update."}, status=422)
 
     else:
-        return HttpResponseRedirect(reverse("index"))
+        return JsonResponse({
+            "error": "PUT request required."
+        }, status=400)
 
 
 @login_required
@@ -328,7 +359,7 @@ def delete_activity(request, id):
             }, status=401)
 
     activity.delete()
-    return HttpResponseRedirect(reverse("index"))
+    return HttpResponseRedirect(reverse("edit_activities"))
 
 
 @login_required

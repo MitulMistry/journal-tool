@@ -227,6 +227,11 @@ span.rounded-pill {
 	box-shadow: 0 0 0 .25rem rgba(156, 194, 255, 0.5);
 }
 
+.edit-activity-input {
+    display: inline;
+    width: 16rem;
+}
+
 #activities-list-div {
     margin-top: .75rem;
 }

@@ -6,7 +6,7 @@
 
     <div class="p-5 mb-4 bg-light2 rounded-3">
         {% for activity in activities %}
-            <h4>
+            <h4 class="mb-3">
                 <span class="badge rounded-pill activity-bg" id="activity-{{ activity.id }}" style="margin-right: .25rem;">{{ activity.name.capitalize }}</span>
                 <span id="form-span-{{ activity.id }}"></span>
                 <button type="button" class="btn btn-primary btn-sm btn-edit" data-id="{{ activity.id }}" style="margin-right: .25rem;">Edit</button>
