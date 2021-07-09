@@ -43,6 +43,9 @@ def logout_user(request):
 
 
 def register_user(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("index"))
+
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
@@ -70,11 +73,11 @@ def register_user(request):
 
 
 @login_required
-def edit_user(request, id):
+def edit_user(request):
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
-
+    
         # Ensure password matches confirmation
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
@@ -89,16 +92,17 @@ def edit_user(request, id):
             user = request.user
             user.username = username
             user.email = email
-            user.password = password
+            user.set_password(password)
             user.save()
         except IntegrityError:
-            return render(request, "journal/register.html", {
+            return render(request, "journal/edit.html", {
+                "user": request.user,
                 "message": "Username already taken."
             })
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
-        return render(request, "journal/edit.html", {
+        return render(request, "journal/register.html", {
             "user": request.user
         })
 

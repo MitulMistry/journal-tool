@@ -2,19 +2,28 @@
 {% load static %}
 
 {% block body %}
-    <h3>Register</h3>
+    {% if not user.is_authenticated %}
+        <h3>Register</h3>
+    {% else %}
+        <h3>Edit Account</h3>
+    {% endif %}
 
     <div class="p-5 mb-4 bg-light2 rounded-3">
         <div class="col-md-6">
+        {% if not user.is_authenticated %}
             <form action="{% url 'register_user' %}" method="post">
+        {% else %}
+            <form action="{% url 'edit_user' %}" method="post">
+        {% endif %}
+        
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input class="form-control" autofocus type="text" name="username">
+                    <input class="form-control" autofocus type="text" value="{{ user.username }}" name="username">
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email Address</label>
-                    <input class="form-control" type="email" name="email">
+                    <input class="form-control" type="email" value="{{ user.email }}" name="email">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
@@ -24,7 +33,12 @@
                     <label for="confirmation" class="form-label">Password Confirmation</label>
                     <input class="form-control" type="password" name="confirmation">
                 </div>
-                <input class="btn btn-primary" type="submit" value="Register">
+
+                {% if not user.is_authenticated %}
+                    <input class="btn btn-primary" type="submit" value="Register">
+                {% else %}
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                {% endif %}
             </form>
         </div>
     </div>
