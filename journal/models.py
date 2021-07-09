@@ -5,6 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.urls.base import reverse
 from django.utils.text import Truncator
 from django.utils import timezone
+# from datetime import *
 
 
 class User(AbstractUser):
@@ -70,6 +71,12 @@ class Entry(models.Model):
 
     def truncated_events(self):
         return Truncator(self.events).words(50)
+
+    def get_time(self):
+        return "{:d}:{:02d}".format(self.timestamp.hour, self.timestamp.minute)
+
+    def get_date(self):
+        return "{:d}-{:02d}-{:02d}".format(self.timestamp.year, self.timestamp.month, self.timestamp.day)
 
     def __str__(self):
         return f"{self.user.username}'s entry on {self.timestamp}"

@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     enable_tooltips();
-    set_current_datetime();
+    if (document.querySelector('#page-name').innerHTML !== 'Edit Entry') {
+        set_current_datetime();
+    }
     initialize_add_activity();
 });
 

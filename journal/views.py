@@ -233,11 +233,66 @@ def edit_entry(request, id):
         }, status=401)
     
     if request.method == "POST":
-        pass
+        
+        date = request.POST["date"]
+        time = request.POST["time"]
+        mood = request.POST["mood"]
+        events = request.POST["events"]
+        negative_thoughts = request.POST["negative_thoughts"]
+        positive_thoughts = request.POST["positive_thoughts"]
+
+        try:
+            activities = request.POST.getlist("activities")
+        except:
+            activities = []
+
+        try:
+            distortions = request.POST.getlist("distortions")
+        except:
+            distortions = []
+
+        # "date": "2021-07-09" (year, month, day)
+        # "time": "23:24" (hour, min)
+        datetime_string = f"{date} {time}"
+        timestamp = datetime.strptime(datetime_string, "%Y-%m-%d %H:%M")
+
+        # Attempt to create new Entry
+        try:
+            entry.timestamp = timestamp
+            entry.mood = mood
+            entry.events = events
+            entry.negative_thoughts = negative_thoughts
+            entry.positive_thoughts = positive_thoughts
+            
+            entry.save()
+
+            # Clear associations and then add based on new list
+            entry.activity_set.clear()
+            entry.distortion_set.clear()
+
+            # Associations need to be established after entry is saved
+            for activity_id in activities:
+                activity = Activity.objects.get(pk=int(activity_id), user=request.user)
+                entry.activity_set.add(activity)
+
+            for distortion_id in distortions:
+                distortion = Distortion.objects.get(pk=int(distortion_id))
+                entry.distortion_set.add(distortion)
+
+        except:
+            return render(request, "journal/new_entry.html", {
+                "activities": request.user.activities.all(),
+                "distortions": Distortion.objects.all(),
+                "message": "Entry edit failed."
+            })
+
+        return HttpResponseRedirect(reverse("entry", args=(entry.id,)))
 
     else:      
         return render(request, "journal/new_entry.html", {
-            "entry": entry
+            "entry": entry,
+            "activities": request.user.activities.all(),
+            "distortions": Distortion.objects.all()
         })
 
 
@@ -301,6 +356,7 @@ def edit_activities(request):
     return render(request, "journal/edit_activities.html", {
         "activities": request.user.activities.all()
     })
+
 
 @csrf_exempt
 @login_required
