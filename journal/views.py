@@ -104,12 +104,9 @@ def edit_user(request, id):
 
 
 @login_required
-def delete_user(request, id):
-    if request.method == "DELETE":
-        request.user.delete()
-        HttpResponseRedirect(reverse("index"))
-    else:
-        return HttpResponseRedirect(reverse("index"))
+def delete_user(request):    
+    request.user.delete()
+    return HttpResponseRedirect(reverse("index"))
 
 
 @login_required
@@ -218,11 +215,28 @@ def entry(request, id):
 
 @login_required
 def edit_entry(request, id):
+    
+    # Query for requested Entry
+    try:
+        entry = Entry.objects.get(pk=id)
+    except:
+        return render(request, "journal/index.html", {
+            "message": "Entry not found."
+        }, status=404)
+
+    # Ensure entry can only be viewed by its creator
+    if entry.user != request.user:
+        return render(request, "journal/index.html", {
+            "message": "Unauthorized."
+        }, status=401)
+    
     if request.method == "POST":
         pass
 
-    else:
-        pass
+    else:      
+        return render(request, "journal/new_entry.html", {
+            "entry": entry
+        })
 
 
 @login_required
@@ -288,12 +302,29 @@ def edit_activity(request, id):
         pass
 
     else:
-        pass
+        return render(request, "journal/edit_activities.html", {
+            "activities": request.user.activities.all()
+        })
 
 
 @login_required
 def delete_activity(request, id):
-    pass
+    
+    # Query for requested Entry
+    try:
+        activity = Activity.objects.get(pk=id)
+    except:
+        return render(request, "journal/index.html", {
+            "message": "Activity not found."
+        }, status=404)
+
+    if activity.user != request.user:
+        return render(request, "journal/index.html", {
+            "message": "Unauthorized."
+            }, status=401)
+
+    activity.delete()
+    return HttpResponseRedirect(reverse("index"))
 
 
 @login_required
