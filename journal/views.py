@@ -147,12 +147,10 @@ def new_entry(request):
         except:
             distortions = []
 
-        # "date": "2021-07-07"
-        # "time": "23:24"
+        # "date": "2021-07-09" (year, month, day)
+        # "time": "23:24" (hour, min)
         datetime_string = f"{date} {time}"
-        timestamp = datetime.strptime(datetime_string, "%Y-%d-%m %H:%M")
-
-        # Need to offset month by 1 due to form submission
+        timestamp = datetime.strptime(datetime_string, "%Y-%m-%d %H:%M")
 
         # Attempt to create new Entry
         try:
