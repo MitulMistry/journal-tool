@@ -71,7 +71,7 @@ def register_user(request):
 
 @login_required
 def edit_user(request, id):
-    if request.method == "PUT":
+    if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
 
@@ -155,6 +155,8 @@ def new_entry(request):
         datetime_string = f"{date} {time}"
         timestamp = datetime.strptime(datetime_string, "%Y-%d-%m %H:%M")
 
+        # Need to offset month by 1 due to form submission
+
         # Attempt to create new Entry
         try:
             entry = Entry(
@@ -201,7 +203,13 @@ def entry(request, id):
     except:
         return render(request, "journal/index.html", {
             "message": "Entry not found."
-        })
+        }, status=404)
+
+    # Ensure entry can only be viewed by its creator
+    if entry.user != request.user:
+        return render(request, "journal/index.html", {
+            "message": "Unauthorized."
+        }, status=401)
 
     return render(request, "journal/entry.html", {
         "entry": entry
@@ -210,7 +218,7 @@ def entry(request, id):
 
 @login_required
 def edit_entry(request, id):
-    if request.method == "PUT":
+    if request.method == "POST":
         pass
 
     else:
@@ -219,11 +227,22 @@ def edit_entry(request, id):
 
 @login_required
 def delete_entry(request, id):
-    if request.method == "DELETE":
-        pass
+        
+    # Query for requested Entry
+    try:
+        entry = Entry.objects.get(pk=id)
+    except:
+        return render(request, "journal/index.html", {
+            "message": "Entry not found."
+        }, status=404)
 
-    else:
-        pass
+    if entry.user != request.user:
+        return render(request, "journal/index.html", {
+            "message": "Unauthorized."
+            }, status=401)
+
+    entry.delete()
+    return HttpResponseRedirect(reverse("index"))
 
 
 def distortions(request):
@@ -265,7 +284,7 @@ def new_activity(request):
 
 @login_required
 def edit_activity(request, id):
-    if request.method == "PUT":
+    if request.method == "POST":
         pass
 
     else:
@@ -274,11 +293,7 @@ def edit_activity(request, id):
 
 @login_required
 def delete_activity(request, id):
-    if request.method == "DELETE":
-        pass
-
-    else:
-        pass
+    pass
 
 
 @login_required
