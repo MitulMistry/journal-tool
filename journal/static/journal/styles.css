@@ -34,7 +34,7 @@ h6 {
 }
 
 .bg-light2 {
-    background-color: #fbfcfd;
+    background-color: #fff;
 }
 
 .rounded-3 {
@@ -180,7 +180,7 @@ span.rounded-pill {
 
 .card-distortion {
     width: 21rem;
-    background-color: #fbfcfd;
+    background-color: #fff;
     border-radius: 1rem;
     border: 0;
     margin-bottom: 1rem;
@@ -189,7 +189,7 @@ span.rounded-pill {
 
 .card-entry {
     width: 36rem;
-    background-color: #fbfcfd;
+    background-color: #fff;
     border-radius: 1rem;
     border: 0;
     margin-bottom: 1rem;
