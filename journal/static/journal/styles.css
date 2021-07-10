@@ -260,3 +260,38 @@ span.rounded-pill {
 .tooltip.bs-tooltip-end .tooltip-arrow::before {
     border-right-color: #0f6af1;
 }
+
+.mood1 {
+    width: 39px;
+    height: 39px;
+    display:inline-block;
+    background: url(mood_sprites_01.png) -0px -0px;
+}
+
+.mood2 {
+    width: 39px;
+    height: 39px;
+    display:inline-block;
+    background: url(mood_sprites_01.png) -39px -0px;
+}
+
+.mood3 {
+    width: 39px;
+    height: 39px;
+    display:inline-block;
+    background: url(mood_sprites_01.png) -78px -0px;
+}
+
+.mood4 {
+    width: 39px;
+    height: 39px;
+    display:inline-block;
+    background: url(mood_sprites_01.png) -117px -0px;
+}
+
+.mood5 {
+    width: 39px;
+    height: 39px;
+    display:inline-block;
+    background: url(mood_sprites_01.png) -156px -0px;
+}
