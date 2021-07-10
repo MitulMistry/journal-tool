@@ -11,4 +11,16 @@
             {% endif %}
         </div>
     </div>
+
+    <div class="p-5 mb-4 bg-light2 rounded-3">
+        <h4 class="mb-3">How It Works</h4>
+        <p class="mb-5">Journal Tool allows you to make journal entries with notes on thoughts and events. Keep track of how you feel over time and collect data on your mood.</p>
+        
+        <h4 class="mb-3">Identify Cognitive Distortions</h4>
+        <p>Cognitive distortions are problems in thinking that can lead to poor mood. Learn to identify them and track them by making journal entries.</p>
+        <p class="mb-5"><a href="{% url 'distortions' %}">Learn more here.</a></p>
+        
+        <h4 class="mb-3">Get Started</h4>
+        <p class="mb-5"><a href="{% url 'register_user' %}">Sign up now.</a></p>
+    </div>
 {% endblock %}
