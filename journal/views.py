@@ -429,3 +429,13 @@ def user_profile(request):
         "top_activities": user.top_activities(),
         "recent_entries": user.recent_entries()
     })
+
+
+@csrf_exempt
+@login_required
+def user_data(request):
+    user = request.user
+    return JsonResponse({
+        # "mood_over_time": user.mood_over_time(),
+        "mood_totals": user.mood_totals()
+    })

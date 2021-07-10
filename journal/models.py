@@ -5,7 +5,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.urls.base import reverse
 from django.utils.text import Truncator
 from django.utils import timezone
-# from datetime import *
 
 
 class User(AbstractUser):
@@ -49,6 +48,45 @@ class User(AbstractUser):
         # Return sorted list of activities based on count, descending
         return sorted(activities_list, key = lambda i: i["count"], reverse=True)
 
+
+    def mood_over_time(self):        
+        # Query for all entries
+        entries = self.entries.order_by('-timestamp')
+        data = []
+        
+        for entry in entries:
+            data.append({
+                "timestamp": entry.timestamp,
+                "mood": entry.mood
+            })
+
+        return data
+
+
+    def mood_totals(self):
+        # Query for all entries
+        entries = self.entries.all()
+        data = {
+            "Awful": 0,
+            "Bad": 0,
+            "Neutral": 0,
+            "Good": 0,
+            "Great": 0
+        }
+        
+        for entry in entries:
+            if entry.mood == 1:
+                data["Awful"] += 1
+            elif entry.mood == 2:
+                data["Bad"] += 1
+            elif entry.mood == 3:
+                data["Neutral"] += 1
+            elif entry.mood == 4:
+                data["Good"] += 1
+            elif entry.mood == 5:
+                data["Great"] += 1
+
+        return data
 
     # Return 4 most recent entries
     def recent_entries(self):
