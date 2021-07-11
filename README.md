@@ -11,10 +11,24 @@ Users can create entries in their journal to track events, mood, as well positiv
 The application depends on Python, which can be installed and managed a variety of ways. For this project, I used [pyenv](https://github.com/pyenv/pyenv) and [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv), following [this guide](https://realpython.com/intro-to-pyenv/).
 
 Once Python is installed, install Django and dependencies using these commands:
+
 `python -m pip install -r requirements.txt` - Install dependencies from [requirements.txt](/requirements.txt) file.
+
 `python manage.py migrate` - Run migrations.
+
 `python manage.py loaddata distortions.json` - Seed database with fixture for distortions (in [distortions.json](/journal/fixtures/distortions.json)).
+
 `python manage.py runserver` - Run server.
+
+If building for production, set these environment variables:
+
+`export DATABASE_URL=<database_url>` - Configure a PostgreSQL database and insert url here.
+
+`export DEBUG=FALSE` - Turn off debug mode for Django application.
+
+`SECRET_KEY=<generate_secret_key>` - Insert a secret keye here. You can generate one using the Django library with the command: `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'`
+
+Then, to collect static files for production, run `python manage.py collectstatic`
 
 ## Project Structure
 [`settings.py`](journaltool/settings.py) - Configuration settings for the application are stored here.
