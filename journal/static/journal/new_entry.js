@@ -53,9 +53,11 @@ function initialize_add_activity() {
                 const checkbox = document.createElement('input');
                 checkbox.setAttribute('type', 'checkbox');
                 checkbox.className = 'btn-check';
-                checkbox.id = element_id;
+                checkbox.id = element_id;                
+                checkbox.setAttribute('name', 'activities');
+                checkbox.setAttribute('value', result['id']);
+                checkbox.checked = true;
                 checkbox.setAttribute('autocomplete', 'off');
-                checkbox.setAttribute('checked', '');
 
                 const label = document.createElement('label');
                 label.className = 'btn btn-activity btn-sm';
