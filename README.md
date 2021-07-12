@@ -1,11 +1,15 @@
 # Journal Tool
+![screenshot1](/readme/journal-tool_readme_01.png)
+
 A journaling web application built with [Django](https://www.djangoproject.com/).
 
 ## Demo App
 You can see a demo version of the application deployed to [Heroku](https://www.heroku.com/) here: https://journal-tool.herokuapp.com/
 
 ## Functionality
-Users can create entries in their journal to track events, mood, as well positive and negative thoughts. The application uses SQLite for development and PostgreSQL for deployment.
+Users can create entries in their journal to track events, mood, as well positive and negative thoughts. It allows users to make complex journal entries involving events that take place during a day and linking them to cognitive distortions - or problems in the thinking that lead to poor mood - as well as negative thoughts that can be reframed and replaced by positive thoughts. In addition, statistics are calculated and sorted based on most common activities and distortions as entries are made. General mood level is tracked as well.
+
+The application uses Django for the back end, Bootstrap, Font Awesome, and JavaScript for the front end, and SQLite for development, with PostgreSQL for deployment.
 
 ## Install Instructions
 The application depends on Python, which can be installed and managed a variety of ways. For this project, I used [pyenv](https://github.com/pyenv/pyenv) and [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv), following [this guide](https://realpython.com/intro-to-pyenv/).
@@ -52,6 +56,17 @@ Then, to collect static files for production, run `python manage.py collectstati
 [`Procfile`](/Procfile) - Configuration for Heroku production deployment is stored here (which is set up to use [Gunicorn](https://gunicorn.org/)).
 
 ## Distinctiveness and Complexity
+![screenshot2](/readme/journal-tool_readme_02.png)
+
+Journal Tool is a Django web application that leverages several models: users, entries, activities, and distortions. Journal entries can be made on a new entry form with functionality enhanced by JavaScript. Current time and date based on the browser's (client side) timezone are automatically selected (and can be modified). Activities can be created within the same form asynchronously without a page reload (leveraging internal API calls). Distortions are prepopulated using a [fixture file](/journal/fixtures/distortions.json) that must be applied. Distortions can be hovered over with tooltips appearing that give a brief summary of what the distortion means.
+
+Once an entry is made, users can view truncated entries on a paginated entries page. An entry can be clicked on (using a "View more" link) with full entry visible on a new page. The entry can than be edited using the same form used to create the entry (with data automatically loaded).
+
+![screenshot3](/readme/journal-tool_readme_03.png)
+
+Going to the user profile page, data calculated based on the user's journal entries is presented. This includes the total count of distortions and activities that are collected over all of the user's entries (done so in class methods in the [models file](/journal/models.py)), sorted by highest to lowest. In addition, the total count of mood scores is queried via an API call and presented on a bar chart using [Chart.js](https://www.chartjs.org/).
+
+Other features include the ability to edit activities and edit user data (including username, email, and password) via links on the user's profile page. The application utilizes Bootstrap for styling and templates, making the site mobile-responsive. Custom styling that overrides select Bootstrap styling is implemented in the [`styles.css`](journal/static/journal/styles.css) file.
 
 ## More Info
 This application began as the final project for Harvard's CS50 Web Programming course:
