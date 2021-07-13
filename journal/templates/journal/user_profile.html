@@ -28,7 +28,7 @@
                 <div class="mt-5 mb-5">
                     <a class="btn btn-primary btn-sm" href="{% url 'edit_activities' %}" role="button" style="margin-right: .5rem;">Edit Activities</a>
                     <a class="btn btn-primary btn-sm" href="{% url 'edit_user' %}" role="button" style="margin-right: .5rem;">Edit Account</a>
-                    <a class="btn btn-primary btn-sm" href="{% url 'delete_user' %}" role="button">Delete Account</a>
+                    <a class="btn btn-primary btn-sm" href="{% url 'delete_user' %}" role="button" onclick="return confirm('Are you sure?');">Delete Account</a>
                 </div>
             </div>
             <div class="col">

@@ -10,7 +10,7 @@
                 <span class="badge rounded-pill activity-bg" id="activity-{{ activity.id }}" style="margin-right: .25rem;">{{ activity.name.capitalize }}</span>
                 <span id="form-span-{{ activity.id }}"></span>
                 <button type="button" class="btn btn-primary btn-sm btn-edit" data-id="{{ activity.id }}" style="margin-right: .25rem;">Edit</button>
-                <a class="btn btn-primary btn-sm" href="{% url 'delete_activity' activity.id %}" role="button">Delete</a>
+                <a class="btn btn-primary btn-sm" href="{% url 'delete_activity' activity.id %}" role="button" onclick="return confirm('Are you sure?');">Delete</a>
             </h4>
         {% endfor %}
     </div>
