@@ -15,7 +15,7 @@ function enable_tooltips() {
 
 function set_current_datetime() {
     const input_date = document.querySelector('#input-date');
-    const input_time = document.querySelector('#input-time');    
+    const input_time = document.querySelector('#input-time');
     const date = new Date();
 
     const date_string = `${date.getFullYear()}-${format_zero(date.getMonth() + 1)}-${format_zero(date.getDate())}`;
@@ -36,41 +36,45 @@ function initialize_add_activity() {
         const form = document.querySelector('#add-activity-form');
         const name = form.value;
 
-        fetch('/activities/new', {
-            method: 'POST',
-            body: JSON.stringify({
-                name: name
+        // Check for empty input
+        if (name !== '') {
+
+            fetch('/activities/new', {
+                method: 'POST',
+                body: JSON.stringify({
+                    name: name
+                })
             })
-        })
-        .then(response => response.json())
-        .then(result => {
-            console.log(result);
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
 
-            // Check if id and name of newly created activity are returned in response
-            if ('id' in result && 'name' in result) {            
-                const element_id = `btn-activity-${result['id']}`;
+                // Check if id and name of newly created activity are returned in response
+                if ('id' in result && 'name' in result) {
+                    const element_id = `btn-activity-${result['id']}`;
 
-                const checkbox = document.createElement('input');
-                checkbox.setAttribute('type', 'checkbox');
-                checkbox.className = 'btn-check';
-                checkbox.id = element_id;                
-                checkbox.setAttribute('name', 'activities');
-                checkbox.setAttribute('value', result['id']);
-                checkbox.checked = true;
-                checkbox.setAttribute('autocomplete', 'off');
+                    const checkbox = document.createElement('input');
+                    checkbox.setAttribute('type', 'checkbox');
+                    checkbox.className = 'btn-check';
+                    checkbox.id = element_id;
+                    checkbox.setAttribute('name', 'activities');
+                    checkbox.setAttribute('value', result['id']);
+                    checkbox.checked = true;
+                    checkbox.setAttribute('autocomplete', 'off');
 
-                const label = document.createElement('label');
-                label.className = 'btn btn-activity btn-sm';
-                label.setAttribute('for', element_id);
-                label.innerHTML = capitalize(result['name']);
-                
-                const div = document.querySelector('#activities-list-div');
-                div.appendChild(checkbox);
-                div.appendChild(label);
+                    const label = document.createElement('label');
+                    label.className = 'btn btn-activity btn-sm';
+                    label.setAttribute('for', element_id);
+                    label.innerHTML = capitalize(result['name']);
 
-                form.value = '';
-            }
-        });
+                    const div = document.querySelector('#activities-list-div');
+                    div.appendChild(checkbox);
+                    div.appendChild(label);
+
+                    form.value = '';
+                }
+            });
+        }
     };
 }
 
