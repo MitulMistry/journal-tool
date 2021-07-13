@@ -313,7 +313,7 @@ def delete_entry(request, id):
             }, status=401)
 
     entry.delete()
-    return HttpResponseRedirect(reverse("index"))
+    return HttpResponseRedirect(reverse("entries"))
 
 
 def distortions(request):

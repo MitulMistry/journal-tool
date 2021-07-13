@@ -9,14 +9,17 @@
     {% endif %}
 
     <div class="p-5 mb-4 bg-light2 rounded-3">
+        {% if entry %}
+        <form action="{% url 'edit_entry' entry.id %}" method="post">
+        {% else %}
         <form action="{% url 'new_entry' %}" method="post">
+        {% endif %}
             {% csrf_token %}
             <div class="row">
                 <div class="col">
                     <div class="mb-3">
                         <label for="date" class="form-label">Date</label>
                         {% if entry %}
-                        {{ entry.get_date }}
                         <input class="form-control" autofocus type="date" name="date" id="input-date" value="{{ entry.get_date }}" min="2020-01-01">
                         {% else %}
                         <input class="form-control" autofocus type="date" name="date" id="input-date" value="2021-01-01" min="2020-01-01">
