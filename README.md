@@ -4,7 +4,7 @@
 A journaling web application built with [Django](https://www.djangoproject.com/).
 
 ## Demo App
-You can see a demo version of the application deployed to [Heroku](https://www.heroku.com/) here: https://journal-tool.herokuapp.com/
+You can see a demo version of the application deployed to [Fly.io](https://fly.io/) here: https://journal-tool.fly.dev/
 
 ## Functionality
 Users can create entries in their journal to track events, mood, as well positive and negative thoughts. It allows users to make complex journal entries involving events that take place during a day and linking them to cognitive distortions - or problems in the thinking that lead to poor mood - as well as negative thoughts that can be reframed and replaced by positive thoughts. In addition, statistics are calculated and sorted based on most common activities and distortions as entries are made. General mood level is tracked as well.
@@ -18,6 +18,8 @@ Once Python is installed, install Django and dependencies using these commands:
 
 `python -m pip install -r requirements.txt` - Install dependencies from [requirements.txt](/requirements.txt) file.
 
+`export DATABASE_URL=<database_url>` - Configure a PostgreSQL database and insert url here.
+
 `python manage.py migrate` - Run migrations.
 
 `python manage.py loaddata distortions.json` - Seed database with fixture for distortions (in [distortions.json](/journal/fixtures/distortions.json)).
@@ -26,11 +28,9 @@ Once Python is installed, install Django and dependencies using these commands:
 
 If building for production, set these environment variables:
 
-`export DATABASE_URL=<database_url>` - Configure a PostgreSQL database and insert url here.
-
 `export DEBUG=FALSE` - Turn off debug mode for Django application.
 
-`SECRET_KEY=<generate_secret_key>` - Insert a secret keye here. You can generate one using the Django library with the command: `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'`
+`SECRET_KEY=<generate_secret_key>` - Insert a secret key here. You can generate one using the Django library with the command: `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'`
 
 Then, to collect static files for production, run `python manage.py collectstatic`
 

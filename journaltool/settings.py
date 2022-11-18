@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
-import django_heroku
+# import django_heroku
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-qoy-q%0!4%@ith32c8((0
 # DEBUG = True
 DEBUG = os.environ.get('DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['journal-tool.fly.dev'] # ['*']
 
 
 # Application definition
@@ -79,13 +80,21 @@ WSGI_APPLICATION = 'journaltool.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
+# Use this configuration for PostgreSQL
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(),
+    # 'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600),
 }
+
+# Use this configuration for SQLite3
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 AUTH_USER_MODEL = "journal.User"
 
@@ -125,6 +134,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 # Default primary key field type
@@ -135,4 +145,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'login_user'
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+# db_from_env = dj_database_url.config(conn_max_age=0, ssl_require=False)
+# django_heroku.settings(locals() ,databases=False)
+# django_heroku.settings(locals())
