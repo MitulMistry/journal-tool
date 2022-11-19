@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-qoy-q%0!4%@ith32c8((0
 # DEBUG = True
 DEBUG = os.environ.get('DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['journal-tool.fly.dev'] # ['*']
+ALLOWED_HOSTS = ['journal-tool.fly.dev', '127.0.0.1'] # ['*']
 
 
 # Application definition
